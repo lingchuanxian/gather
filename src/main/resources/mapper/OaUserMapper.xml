@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.fjlcx.application.gather.dao.OaUserDao" >
+
+  <resultMap id="BaseResultMap" type="cn.fjlcx.application.gather.bean.OaUser">
+    <id column="us_id" jdbcType="INTEGER" property="usId" />
+    <result column="us_loginname" jdbcType="VARCHAR" property="usLoginname" />
+    <result column="us_pwd" jdbcType="VARCHAR" property="usPwd" />
+    <result column="us_head" jdbcType="VARCHAR" property="usHead" />
+    <result column="us_name" jdbcType="VARCHAR" property="usName" />
+    <result column="us_sex" jdbcType="INTEGER" property="usSex" />
+    <result column="us_phone" jdbcType="VARCHAR" property="usPhone" />
+    <result column="us_mail" jdbcType="VARCHAR" property="usMail" />
+    <result column="us_address" jdbcType="VARCHAR" property="usAddress" />
+    <result column="us_state" jdbcType="INTEGER" property="usState" />
+    <result column="us_registdate" jdbcType="TIMESTAMP" property="usRegistdate" />
+    <result column="us_lastlogindate" jdbcType="TIMESTAMP" property="usLastlogindate" />
+    <association property="role" column="us_role" select="getRole"></association>
+  </resultMap>
+
+  <select id="selectOaUserByLoginName" parameterType="String" resultMap="BaseResultMap">
+    select * from oa_user WHERE us_loginname = #{loginName}
+  </select>
+
+  <select id="getRole" parameterType="int" resultType="String">
+    SELECT rl_code FROM oa_role WHERE rl_id = #{us_role}
+  </select>
+
+</mapper>
