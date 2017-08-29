@@ -31,7 +31,7 @@
                 <div class="input validate" id="validate">
                     <label for="code">验证码</label>
                     <input type="text" id="code"/>
-                    <img src="imageCode.html" id="kaptchaImage" title="看不清，点击换一张"  style="float: right;"/>
+                    <img src="imageCode.shtml" id="kaptchaImage" title="看不清，点击换一张"  style="float: right;"/>
                 </div>
 
                 <div id="btn" class="loginButton">

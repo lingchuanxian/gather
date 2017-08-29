@@ -5,7 +5,7 @@
          version="3.0">
   <display-name>Office</display-name>
   <welcome-file-list>
-    <welcome-file>login.html</welcome-file>
+    <welcome-file>login.shtml</welcome-file>
   </welcome-file-list>
   <!-- Spring和mybatis的配置文件 -->
   <context-param>
@@ -65,7 +65,7 @@
   <servlet-mapping>
     <servlet-name>SpringMVC</servlet-name>
     <!-- 此处可以可以配置成*.do，对应struts的后缀习惯 -->
-    <url-pattern>*.html</url-pattern>
+    <url-pattern>*.shtml</url-pattern>
   </servlet-mapping>
   <!-- 配置SESSION超时，单位是分钟 -->
   <session-config>

@@ -18,8 +18,8 @@ $(function () {
             var data={"username":$("#account").val(),"password":$("#pwd").val(),"code":$("#code").val()};
             $.ajax({
                 type:"POST",
-                url:"dologin.html",
-                dataType:"application/json",
+                url:"dologin.shtml",
+                dataType:"text",
                 data:data,
                 success:function(data){
                     layer.closeAll('loading');
