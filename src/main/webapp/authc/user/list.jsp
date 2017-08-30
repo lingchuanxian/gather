@@ -12,7 +12,7 @@
                 url: '/admin/oauser/list.shtml',   //指向后台的Action来获取当前菜单的信息的Json格式的数据
                 title: '用户列表',
                 iconCls: 'icon-application_view_list',
-                height:500,
+                height:'auto',
                 width: function () { return document.body.clientWidth * 0.9 },
                 nowrap: true,
                 autoRowHeight: false,
