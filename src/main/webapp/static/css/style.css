@@ -1,2 +1,11 @@
+body{font-family: "Microsoft YaHei", "simsun", "Helvetica Neue", Arial, Helvetica, sans-serif;}
 .footer{width:100%;text-align: center;}
+.easyui-tree li{margin-top: 4px;}
+.header-left{padding: 10px;float: left;}
+.header-right{float: right;}
 .nav-tab{display:block;text-decoration: none;color: #000000;padding-left: 5px;}
+.head-menu{float: right;}
+.head-menu li{float: left;list-style: none;margin-right: 5px;color: #ffffff;font-size: 14px;}
+.head-menu li a{color: #ffffff;text-decoration: none;}
+.head-menu li a:hover{text-decoration: underline;}
+#cpw_dlg{width:400px;height:200px;padding:10px;}

@@ -68,8 +68,15 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 
+	<!-- 默认访问跳转到登录页面(即定义无需Controller的url<->view直接映射) -->
+	<mvc:view-controller path="/login.shtml" view-name="public/login"/>
+
 	<!-- 配置自定义Realm -->
-	<bean id="myRealm" class="cn.fjlcx.application.gather.global.ShiroRealm"/>
+	<bean id="myRealm" class="cn.fjlcx.application.gather.global.ShiroRealm">
+		<!-- 密码验证方式 -->
+		<property name="credentialsMatcher" ref="hashedCredentialsMatcher"/>
+		<property name="cachingEnabled" value="false"/>
+	</bean>
 
 	<!-- 安全管理器 -->
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
@@ -81,7 +88,9 @@
 		<!-- Shiro的核心安全接口,这个属性是必须的 -->
 		<property name="securityManager" ref="securityManager"/>
 		<!-- 身份认证失败，则跳转到登录页面的配置 -->
-		<property name="loginUrl" value="/login.html"/>
+		<property name="loginUrl" value="/login.shtml"/>
+		<!-- 登录成功页面，登录成功后跳转到该页面  -->
+		<property name="successUrl" value="/index"/>
 		<!-- 权限认证失败，则跳转到指定页面 -->
 		<property name="unauthorizedUrl" value="/public/unauthorized.jsp"/>
 		<!-- Shiro连接约束配置,即过滤链的定义 -->
@@ -93,7 +102,6 @@
 			</value>
 		</property>
 	</bean>
-
 	<!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
 	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
 
@@ -101,6 +109,13 @@
 	<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor"/>
 	<bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
 		<property name="securityManager" ref="securityManager"/>
+	</bean>
+
+	<bean id="hashedCredentialsMatcher"
+		  class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+		<property name="hashAlgorithmName" value="MD5" />
+		<property name="storedCredentialsHexEncoded" value="true" />
+		<property name="hashIterations" value="1024" />
 	</bean>
 
 	<!-- 配置kaptcha验证码 -->

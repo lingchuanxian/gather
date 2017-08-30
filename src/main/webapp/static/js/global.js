@@ -29,11 +29,19 @@ $(function () {
                         layer.msg(obj.message);
                     }else{
                         layer.msg(obj.message);
-                        setTimeout("location.href='/admin/index'", 1500);
+                        setTimeout("location.href='/admin/index.shtml'", 1500);
                     }
                 }
             });
         }
+    });
+
+    $("#exit-system").click(function () {
+        $.messager.confirm('退出系统', '您确定要退出本系统吗?', function(r){
+            if (r){
+                location.href = "logout.shtml";
+            }
+        });
     });
 
 });

@@ -13,8 +13,11 @@ import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authz.annotation.RequiresAuthentication;
+import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
+import org.apache.shiro.util.ByteSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,11 +61,6 @@ public class CommonController {
 		this.captchaProducer = captchaProducer;
 	}
 
-	@RequestMapping("login")
-	public String login(){
-		return "public/login";
-	}
-
 	@RequestMapping(value = "dologin",method = RequestMethod.POST)
 	@ResponseBody
 	public Result dologin(@RequestParam String username, @RequestParam String password, @RequestParam String code){
@@ -98,7 +96,7 @@ public class CommonController {
 		}catch(AuthenticationException ae){
 			//通过处理Shiro的运行时AuthenticationException就可以控制用户登录失败或密码错误时的情景
 			logger.info("对用户[" + username + "]进行登录验证..验证未通过,堆栈轨迹如下");
-			ae.printStackTrace();
+			//ae.printStackTrace();
 			return  ResultGenerator.genFailResult("用户名或密码不正确");
 		}
 		if(currentUser.isAuthenticated()){
@@ -119,7 +117,7 @@ public class CommonController {
 		if (subject.isAuthenticated()) {
 			subject.logout();
 		}
-		return "redirect:login";
+		return "redirect:login.shtml";
 	}
 
 	@RequestMapping("imageCode")
@@ -144,10 +142,17 @@ public class CommonController {
 		}
 	}
 
-
+	@RequiresAuthentication
 	@RequestMapping("admin/index")
 	public String index(){
 		return "authc/index";
+	}
+
+	@RequestMapping("genPassword")
+	public void genPassword(String password,String loginName){
+		logger.info("password:"+password+"<--->loginName:"+loginName);
+		SimpleHash sh = new SimpleHash("MD5",password, ByteSource.Util.bytes(loginName),1024);
+		logger.info(sh.toString());
 	}
 
 }

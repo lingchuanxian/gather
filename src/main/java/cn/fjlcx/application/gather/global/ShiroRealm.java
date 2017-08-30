@@ -1,12 +1,12 @@
 package cn.fjlcx.application.gather.global;
 
 import org.apache.log4j.Logger;
-import org.apache.shiro.authc.AccountException;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.DisabledAccountException;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
+import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
@@ -50,9 +50,8 @@ public class ShiroRealm extends AuthorizingRealm {
 			logger.info("password:"+oaUser.getUsPwd());
 			return new SimpleAuthenticationInfo(oaUser.getUsLoginname(),oaUser.getUsPwd(), ByteSource.Util.bytes(oaUser.getUsLoginname()), getName());
 		}else{
-			throw new AccountException("帐号不正确！");
+			throw new UnknownAccountException("未知帐号！");
 		}
-
 	}
 
 	/**

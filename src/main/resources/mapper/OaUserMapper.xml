@@ -26,4 +26,12 @@
     SELECT rl_code FROM oa_role WHERE rl_id = #{us_role}
   </select>
 
+  <select id="selectOaUserByPager" resultMap="BaseResultMap">
+    select * from oa_user limit #{start},#{limit}
+  </select>
+
+  <select id="selectOaUserAll" resultMap="BaseResultMap">
+    select * from oa_user
+  </select>
+
 </mapper>

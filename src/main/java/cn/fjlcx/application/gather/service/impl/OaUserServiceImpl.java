@@ -3,6 +3,9 @@ package cn.fjlcx.application.gather.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Map;
+
 import cn.fjlcx.application.gather.bean.OaUser;
 import cn.fjlcx.application.gather.dao.OaUserDao;
 import cn.fjlcx.application.gather.service.OaUserService;
@@ -18,5 +21,15 @@ public class OaUserServiceImpl implements OaUserService{
 	OaUserDao mOaUserDao;
 	public OaUser selectOaUserByLoginName(String loginName) {
 		return mOaUserDao.selectOaUserByLoginName(loginName);
+	}
+
+	@Override
+	public List<OaUser> selectOaUserByPager(Map<String, Object> params) {
+		return mOaUserDao.selectOaUserByPager(params);
+	}
+
+	@Override
+	public List<OaUser> selectOaUserAll() {
+		return mOaUserDao.selectOaUserAll();
 	}
 }
