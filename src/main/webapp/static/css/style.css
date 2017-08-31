@@ -9,3 +9,15 @@ body{font-family: "Microsoft YaHei", "simsun", "Helvetica Neue", Arial, Helvetic
 .head-menu li a{color: #ffffff;text-decoration: none;}
 .head-menu li a:hover{text-decoration: underline;}
 #cpw_dlg{width:400px;height:200px;padding:10px;}
+#mytable{ border-collapse: collapse;  /* 让边框合并 */
+    border: 1px solid #95B8E7;  /*边框1个像素  */
+    margin-top: 40px;}
+#mytable th{width:80px;text-align: center;font-weight: normal;color: #0E2D5F;height:20px; line-height: 20px;}
+#mytable td{padding: 2px;}
+#mytable input{width:180px;}
+.textbox{
+    height:22px;
+    margin:0;
+    padding:0 2px;
+    box-sizing:content-box;
+}

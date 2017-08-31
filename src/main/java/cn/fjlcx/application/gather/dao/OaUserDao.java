@@ -15,4 +15,6 @@ public interface OaUserDao {
 	OaUser selectOaUserByLoginName(String loginName);
 	List<OaUser> selectOaUserByPager(Map<String,Object> params);
 	List<OaUser> selectOaUserAll();
+	int deleteOaUserById(int usId);
+	OaUser selectOaUserById(int usId);
 }

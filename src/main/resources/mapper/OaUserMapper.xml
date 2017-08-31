@@ -27,11 +27,19 @@
   </select>
 
   <select id="selectOaUserByPager" resultMap="BaseResultMap">
-    select * from oa_user limit #{start},#{limit}
+    select * from oa_user ORDER BY us_id DESC limit #{start},#{limit}
   </select>
 
   <select id="selectOaUserAll" resultMap="BaseResultMap">
     select * from oa_user
+  </select>
+
+  <delete id="deleteOaUserById" parameterType="int">
+    delete FROM oa_user WHERE us_id = #{usId}
+  </delete>
+
+  <select id="selectOaUserById" parameterType="int" resultMap="BaseResultMap">
+    SELECT * from oa_user WHERE us_id = #{usId}
   </select>
 
 </mapper>

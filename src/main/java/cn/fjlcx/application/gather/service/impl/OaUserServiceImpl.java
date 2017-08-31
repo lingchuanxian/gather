@@ -32,4 +32,14 @@ public class OaUserServiceImpl implements OaUserService{
 	public List<OaUser> selectOaUserAll() {
 		return mOaUserDao.selectOaUserAll();
 	}
+
+	@Override
+	public int deleteOaUserById(int usId) {
+		return mOaUserDao.deleteOaUserById(usId);
+	}
+
+	@Override
+	public OaUser selectOaUserById(int usId) {
+		return mOaUserDao.selectOaUserById(usId);
+	}
 }
