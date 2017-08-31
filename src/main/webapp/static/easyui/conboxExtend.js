@@ -4,7 +4,7 @@ $.extend($.fn.combobox.methods, {
 
         if (!index)
 
-            index = ;
+            index = 0;
 
         var data = $(jq).combobox('options').data;
 
@@ -16,7 +16,7 @@ $.extend($.fn.combobox.methods, {
 
     getIndex: function (jq) {
 
-        var index = ;
+        var index = 0;
 
         var data = $(jq).combobox('options').data;
 
@@ -26,7 +26,7 @@ $.extend($.fn.combobox.methods, {
 
         if (data != null && data.length != null) {
 
-            for (var i = ; i < data.length; i++) {
+            for (var i =0 ; i < data.length; i++) {
 
                 if (value == eval('data[i].' + vf))
 
